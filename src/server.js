@@ -9,11 +9,13 @@ const errorHandler = require('./handlers/500');
 
 const PORT = process.env.PORT || 3002;
 const customerRouter = require('./routes/customers');
+const clothRouter = require('./routes/cloths');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(customerRouter);
+app.use(clothRouter);
 
 app.get('/', (req, res, next) => {
   res.status(200).send('Welcome');

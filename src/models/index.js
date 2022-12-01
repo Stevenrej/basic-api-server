@@ -3,6 +3,7 @@
 require('dotenv').config();
 const { Sequelize, DataTypes } = require('sequelize');
 const customersSchema = require('./customers.schema');
+const clothsSchema = require('./cloths.schema');
 
 
 // 'postgres://localhost:5432/api-app'
@@ -21,9 +22,11 @@ const sequelizeDatabase = new Sequelize(DATABASE_URL,{
   },
 });
 
+const ClothModel = clothsSchema(sequelizeDatabase, DataTypes);
 const CustomerModel = customersSchema(sequelizeDatabase, DataTypes);
 
 module.exports = {
   sequelizeDatabase,
   CustomerModel,
+  ClothModel,
 }

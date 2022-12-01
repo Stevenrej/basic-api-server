@@ -7,7 +7,7 @@ module.exports = (sequelizeDatabase, DataTypes) => sequelizeDatabase.define('cus
   },
   age: {
     type: DataTypes.INTEGER,
-    allowNull: true,
+    allowNull: false,
   },
   pronouns: {
     type: DataTypes.ENUM,
