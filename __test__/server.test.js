@@ -77,4 +77,56 @@ describe('REST API',  () => {
     expect(response.body.message).toBe('Not Found');
   });
 
+
+
+
+  test('Creates a cloth', async () => {
+    let response = await request.post('/cloths').send({
+      name: 'fedora',
+      amount: 6,
+      type: 'hat'
+    });
+
+    expect(response.status).toEqual(200);
+    expect(response.body.name).toEqual('fedora');
+    expect(response.body.age).toEqual(6);
+    expect(response.body.pronouns).toEqual('hat');
+  });
+
+  test('find all clothss', async () => {
+    let response =  await request.get('/cloths');
+
+    expect(response.status).toEqual(200);
+    expect(response.body[0].name).toEqual('fedora');
+    expect(response.body[0].age).toEqual(6);
+    expect(response.body[0].pronouns).toEqual('hat');
+  });
+
+  test('find a cloths', async () => {
+    let response =  await request.get('/cloths/1');
+
+    expect(response.status).toEqual(200);
+    expect(response.body.name).toEqual('fedora');
+    expect(response.body.age).toEqual(6);
+    expect(response.body.pronouns).toEqual('HAT');
+  });
+
+  test('updates cloths', async () => {
+    let response = await request.put('/cloths/1').send({
+      name: 'fitted cap',
+      age: 10,
+      pronouns: 'hat',
+    });
+    expect(response.status).toEqual(200);
+    expect(response.body.name).toEqual('fitted cap');
+    expect(response.body.age).toEqual(10);
+    expect(response.body.pronouns).toEqual('hat');
+  })
+
+  test('deletes cloths', async () => {
+    let response = await request.delete('/cloths/1')
+
+    expect(response.body).toEqual({});
+  })
+
 });
