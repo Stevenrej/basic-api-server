@@ -44,6 +44,24 @@ describe('REST API',  () => {
     expect(response.body[0].pronouns).toEqual('he/him');
   });
 
+  test('updates customer', async () => {
+    let response = await request.put('/customer/1').send({
+      name: 'jim',
+      age: 40,
+      pronouns: 'he/him',
+    });
+    expect(response.status).toEqual(200);
+    expect(response.body.name).toEqual('jim');
+    expect(response.body.age).toEqual(40);
+    expect(response.body.pronouns).toEqual('he/him');
+  })
+
+  test('deletes customer', async () => {
+    let response = await request.delete('/customer/1')
+
+    expect(response.body).toEqual({});
+  })
+
   it('sends a 404 status when on a bad route', async() => {
     const response = await request.get('/badroute');
     expect(response.status).toBe(404);
