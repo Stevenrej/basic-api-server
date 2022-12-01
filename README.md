@@ -6,7 +6,7 @@
 
 ### Problem Domain
 
-Create a web server using CI and CD
+Build a REST API using Express, by creating a proper series of endpoints that perform CRUD operations on a database, using the REST standard
 
 ### Links and Resources
 
