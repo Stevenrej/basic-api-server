@@ -44,6 +44,15 @@ describe('REST API',  () => {
     expect(response.body[0].pronouns).toEqual('he/him');
   });
 
+  test('find a customer', async () => {
+    let response =  await request.get('/customer/1');
+
+    expect(response.status).toEqual(200);
+    expect(response.body.name).toEqual('tim');
+    expect(response.body.age).toEqual(50);
+    expect(response.body.pronouns).toEqual('he/him');
+  });
+
   test('updates customer', async () => {
     let response = await request.put('/customer/1').send({
       name: 'jim',
